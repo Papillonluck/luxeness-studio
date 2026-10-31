@@ -812,9 +812,9 @@ html.intro-s .i-day{animation-duration:1.7s}
  .hero{background:#0b0e14 url(img/traveller-cabin.jpg) 62% 0%/cover no-repeat}
  .hero > img.hero-img{display:none!important}
  .hero::before{content:"";position:absolute;inset:0;pointer-events:none;z-index:0;
-  background:linear-gradient(90deg,rgba(11,14,20,.95) 0%,rgba(11,14,20,.9) 42%,rgba(11,14,20,.72) 57%,rgba(11,14,20,.25) 64%,rgba(11,14,20,0) 72%,rgba(11,14,20,0) 100%),
+  background:linear-gradient(90deg,rgba(11,14,20,.95) 0%,rgba(11,14,20,.9) 40%,rgba(11,14,20,.85) 47%,rgba(11,14,20,.72) 53%,rgba(11,14,20,.55) 58%,rgba(11,14,20,.37) 62%,rgba(11,14,20,.21) 66%,rgba(11,14,20,.09) 70%,rgba(11,14,20,.02) 74%,rgba(11,14,20,0) 78%,rgba(11,14,20,0) 100%),
              linear-gradient(180deg,rgba(11,14,20,.5) 0%,rgba(11,14,20,0) 18%,rgba(11,14,20,0) 62%,rgba(11,14,20,.97) 100%),
-             linear-gradient(90deg,rgba(0,0,0,.2) 0%,rgba(0,0,0,.2) 38%,rgba(0,0,0,0) 56%)}
+             linear-gradient(90deg,rgba(0,0,0,.2) 0%,rgba(0,0,0,.2) 34%,rgba(0,0,0,.1) 48%,rgba(0,0,0,0) 62%)}
 }
 
 /* The campaign photos share the deck's evening tone; documentary and retail photos stay true to life */
@@ -1661,7 +1661,7 @@ html body .ed2-who .ed2-v img:not(#z1):not(#z2):not(#z3):not(#z4):not(#z5):not(#
       var W = r.width, H = r.height, iw = 1704, ih = 1307;
       var k = Math.max(W / iw, H / ih), bw = iw * k, bh = ih * k;
       var bx = (W - bw) * 0.62, by = (H - bh) * 0 + r.top;
-      var side = 'linear-gradient(90deg,rgba(11,14,20,.95) 0%,rgba(11,14,20,.9) 42%,rgba(11,14,20,.72) 57%,rgba(11,14,20,.25) 64%,rgba(11,14,20,0) 72%,rgba(11,14,20,0) 100%)';
+      var side = 'linear-gradient(90deg,rgba(11,14,20,.95) 0%,rgba(11,14,20,.9) 40%,rgba(11,14,20,.85) 47%,rgba(11,14,20,.72) 53%,rgba(11,14,20,.55) 58%,rgba(11,14,20,.37) 62%,rgba(11,14,20,.21) 66%,rgba(11,14,20,.09) 70%,rgba(11,14,20,.02) 74%,rgba(11,14,20,0) 78%,rgba(11,14,20,0) 100%)';
       var fall = 'linear-gradient(180deg,rgba(11,14,20,.5) 0%,rgba(11,14,20,0) 18%,rgba(11,14,20,0) 62%,rgba(11,14,20,.97) 100%)';
       var pos = -r.top / H;
       var go = pos <= 0.72 ? 0.05 : (pos >= 0.96 ? 0 : 0.05 * (0.96 - pos) / 0.24);
@@ -1678,7 +1678,7 @@ html body .ed2-who .ed2-v img:not(#z1):not(#z2):not(#z3):not(#z4):not(#z5):not(#
         hdr.style.background = '';
         hdr.style.backgroundColor = '#0d0f12';
         var past = 'linear-gradient(#0d0f12,#0d0f12)';
-        hdr.style.backgroundImage = past + ',' + side + ',' + fall + ',linear-gradient(90deg,rgba(0,0,0,.2) 0%,rgba(0,0,0,.2) 38%,rgba(0,0,0,0) 56%),url(' + (window.__heroFrame || 'img/traveller-cabin.jpg') + ')';
+        hdr.style.backgroundImage = past + ',' + side + ',' + fall + ',linear-gradient(90deg,rgba(0,0,0,.2) 0%,rgba(0,0,0,.2) 34%,rgba(0,0,0,.1) 48%,rgba(0,0,0,0) 62%),url(' + (window.__heroFrame || 'img/traveller-cabin.jpg') + ')';
         hdr.style.backgroundRepeat = 'no-repeat';
         hdr.style.backgroundSize = W + 'px 4000px,' + W + 'px ' + H + 'px,' + W + 'px ' + H + 'px,' + W + 'px ' + H + 'px,' + bw + 'px ' + bh + 'px';
         hdr.style.backgroundPosition = '0 ' + r.bottom + 'px,0 0,0 ' + r.top + 'px,0 ' + r.top + 'px,' + bx + 'px ' + by + 'px';
