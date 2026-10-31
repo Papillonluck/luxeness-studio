@@ -1470,7 +1470,7 @@ html body .ed2-who .ed2-v img:not(#z1):not(#z2):not(#z3):not(#z4):not(#z5):not(#
         <div class="tl-b">Since then, I&rsquo;ve written LinkedIn posts, articles, newsletters and books for CEOs and founders, produced their audio and video podcasts, and booked them as guests on the podcasts their buyers and investors listen to. That included producing Luxury on Air, a vodcast sponsored by Deloitte, filmed at Steve Varsano&rsquo;s private jet showroom on Park Lane, then turning it into short-form video to promote the content across social. In that time I trained with Premium Ghostwriting Academy, where I learned to write for digital platforms, a completely different skill to writing offline.</div>
         <div class="tl-b">Leaders now seek me out to be the strategist and writer behind their personal brands. I&nbsp;choose carefully who I work with, because the leaders I represent are a reflection of my own judgement, even though everything I do for them stays in the utmost confidence.</div>
         <div class="tl-b">Every one of those projects taught me the same thing: the leaders people trust most are the ones whose thinking they can see. LUXENESS Studio brings that work together for the industry I know best, luxury wellness and hospitality.</div>
-        <div class="tl-img"><div class="loa-v" tabindex="0" role="button" aria-label="Play the Luxury on Air episode full screen"><span class="lip-en loa-en" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M7 1h4v4M5 11H1V7M11 1L7 5M1 11l4-4"/></svg>Watch full screen</span><img loading="lazy" decoding="async" src="img/luxury-on-air-warm.jpg" alt="Luxury on Air, a vodcast sponsored by Deloitte, filmed at The Jet Business on Park Lane" width="1600" height="896"><span class="loa-play" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span></div><div class="tl-cap"><span class="cap-l">Luxury on Air, a vodcast sponsored by Deloitte,</span> <span class="cap-l">filmed at The Jet Business</span><a href="https://youtu.be/dlVPJ5NnT0M" class="loa-open" target="_blank" rel="noopener">Watch the episode</a></div></div>
+        <div class="tl-img"><div class="loa-v" tabindex="0" role="button" aria-label="Play the Luxury on Air episode full screen"><img loading="lazy" decoding="async" src="img/luxury-on-air-warm.jpg" alt="Luxury on Air, a vodcast sponsored by Deloitte, filmed at The Jet Business on Park Lane" width="1600" height="896"><span class="loa-play" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span></div><div class="tl-cap"><span class="cap-l">Luxury on Air, a vodcast sponsored by Deloitte,</span> <span class="cap-l">filmed at The Jet Business</span><a href="https://youtu.be/dlVPJ5NnT0M" class="loa-open" target="_blank" rel="noopener">Watch the episode</a></div></div>
       </div>
     </div>
     <div class="story-in story-close"><p>One career earning the trust of investors, another earning the trust of the most demanding clients in luxury.</p>
@@ -1637,6 +1637,7 @@ html body .ed2-who .ed2-v img:not(#z1):not(#z2):not(#z3):not(#z4):not(#z5):not(#
   var hdr = document.querySelector('.hdr');
   var hero = document.querySelector('.hero');
   if(!hdr || !hero) return;
+  var hpg = hero.querySelector(':scope > .page');
   var stops = [[0,46,65,112],[10,42,60,104],[20,38,55,95],[30,34,49,85],[40,30,43,74],
                [50,26,37,63],[60,22,31,52],[70,18,26,42],[80,15,21,32],[88,13,17,24],
                [95,13,15,18],[100,13,15,18]];
@@ -1666,10 +1667,13 @@ html body .ed2-who .ed2-v img:not(#z1):not(#z2):not(#z3):not(#z4):not(#z5):not(#
       var pos = -r.top / H;
       var go = pos <= 0.72 ? 0.05 : (pos >= 0.96 ? 0 : 0.05 * (0.96 - pos) / 0.24);
       hdr.style.setProperty('--hgy', r.top + 'px'); hdr.style.setProperty('--hgo', r.bottom <= 0 ? 0 : go);
+      if(hpg && !(r.top >= -1 || r.bottom >= hdr.getBoundingClientRect().height)) hpg.style.clipPath = '';
       if(r.bottom <= 0){ hdr.style.backgroundImage = ''; hdr.style.background = '#0d0f12'; }
-      else if(r.top >= -1){
-        /* at the very top the header is simply see-through, so it is the hero itself */
+      else if(r.top >= -1 || r.bottom >= hdr.getBoundingClientRect().height){
+        /* while the photo still fills the header, the header stays see-through so the photo is one
+           continuous image with no seam, and the hero text is clipped at the header's lower edge */
         hdr.style.background = 'transparent'; hdr.style.backgroundImage = ''; hdr.style.setProperty('--hgo', 0);
+        if(hpg){ var cut = hdr.getBoundingClientRect().bottom - hpg.getBoundingClientRect().top; hpg.style.clipPath = (cut > 0 && r.top < -1) ? 'inset(' + cut + 'px -100vw 0 -100vw)' : ''; }
       }
       else {
         hdr.style.background = '';
@@ -1682,7 +1686,7 @@ html body .ed2-who .ed2-v img:not(#z1):not(#z2):not(#z3):not(#z4):not(#z5):not(#
       }
       hdr.style.setProperty('--hdrc','rgba(11,14,20,0)'); hdr.style.setProperty('--hdrc0','rgba(11,14,20,0)'); return;
     }
-    hdr.style.backgroundImage = ''; hdr.style.setProperty('--hgo', 0);
+    hdr.style.backgroundImage = ''; hdr.style.setProperty('--hgo', 0); if(hpg) hpg.style.clipPath = '';
     if(hero.classList.contains('m-photo')){
       var a = Math.max(0, Math.min(1, -r.top / 260));
       var col = 'rgba(13,15,18,' + a.toFixed(3) + ')';
